@@ -19,5 +19,11 @@ module.exports = merge(shared, {
     chunkFilename: '[name].js',
     publicPath: 'http://localhost:3001/static/',
   },
-  plugins: [new LoadablePlugin({ writeToDisk: true }), ...moduleFederationPlugin.client],
+  plugins: [
+    new LoadablePlugin({
+      writeToDisk: true,
+    }),
+
+    ...moduleFederationPlugin.client,
+  ],
 });

@@ -7791,6 +7791,11 @@ webpack-cli@4.9.2:
     rechoir "^0.7.0"
     webpack-merge "^5.7.3"
 
+webpack-federation-stats-plugin@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-federation-stats-plugin/-/webpack-federation-stats-plugin-1.0.2.tgz#fabcb3e00ebeb23a3701c9da4bb8335beb993ea8"
+  integrity sha512-k8f2dn/221lZDryxmSHgpBwGebHNCMWhJfruLq0aXxCXXhPYkUqsY2pQtljLILCLzOBRYM4EovWq+9/qWUdbgw==
+
 webpack-merge@5.8.0, webpack-merge@^5.7.3:
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-5.8.0.tgz#2b39dbf22af87776ad744c390223731d30a68f61"

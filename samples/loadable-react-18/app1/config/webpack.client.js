@@ -26,11 +26,11 @@ const webpackConfig = {
     publicPath: 'http://localhost:3000/static/',
   },
   plugins: [
-    moduleFederationPlugin.client,
-
     new LoadablePlugin({
       writeToDisk: true,
     }),
+
+    ...moduleFederationPlugin.client,
   ],
 };
 

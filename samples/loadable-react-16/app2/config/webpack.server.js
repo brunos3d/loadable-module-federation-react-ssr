@@ -19,7 +19,13 @@ module.exports = merge(shared, {
     filename: '[name].js',
     libraryTarget: 'commonjs-module',
   },
-  plugins: [new LoadablePlugin({ writeToDisk: true }), ...moduleFederationPlugin.server],
+  plugins: [
+    new LoadablePlugin({
+      writeToDisk: true,
+    }),
+
+    ...moduleFederationPlugin.server,
+  ],
   stats: {
     colors: true,
   },

@@ -22,7 +22,13 @@ const webpackConfig = {
     filename: '[name].js',
     libraryTarget: 'commonjs-module',
   },
-  plugins: [new LoadablePlugin(), ...moduleFederationPlugin.server],
+  plugins: [
+    new LoadablePlugin({
+      writeToDisk: true,
+    }),
+
+    ...moduleFederationPlugin.server,
+  ],
   stats: {
     colors: true,
   },

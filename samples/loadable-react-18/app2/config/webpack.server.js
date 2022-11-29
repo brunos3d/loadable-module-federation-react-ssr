@@ -9,7 +9,7 @@ module.exports = merge(shared, {
   target: false,
   entry: {
     main: ['@babel/polyfill', path.resolve(__dirname, '../src/server/index')],
-    serverAppEntrypoint: path.resolve(__dirname, '../src/server/serverAppEntrypoint')
+    serverAppEntrypoint: path.resolve(__dirname, '../src/server/serverAppEntrypoint'),
   },
   output: {
     path: path.resolve(__dirname, '../dist/server'),
@@ -17,7 +17,7 @@ module.exports = merge(shared, {
     libraryTarget: 'commonjs-module',
   },
   mode: 'production',
-  plugins: [new LoadablePlugin(), ...moduleFederationPlugin.server],
+  plugins: [new LoadablePlugin({ writeToDisk: true }), ...moduleFederationPlugin.server],
   stats: {
     colors: true,
   },

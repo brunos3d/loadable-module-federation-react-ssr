@@ -21,11 +21,11 @@ const webpackConfig = {
   },
   mode: 'production',
   plugins: [
-    ...moduleFederationPlugin.server,
-
     new LoadablePlugin({
       writeToDisk: true,
     }),
+
+    ...moduleFederationPlugin.server,
   ],
   stats: {
     colors: true,
