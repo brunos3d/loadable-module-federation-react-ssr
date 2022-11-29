@@ -1,0 +1,21 @@
+{
+  "name": "loadable-module-federation-old-react-versions",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "samples/*"
+  ],
+  "devDependencies": {
+    "jest": "26.6.3",
+    "lerna": "^6.0.1",
+    "prettier": "2.7.1"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "build": "lerna run --parallel build",
+    "prettier": "prettier --write \"**/*.{js,jsx,json,md,ts,tsx}\"",
+    "prettier:check": "prettier --list-different \"**/*.{js,jsx,json,md,ts,tsx}\"",
+    "test": "jest test/index.spec.js --maxWorkers=2"
+  }
+}
