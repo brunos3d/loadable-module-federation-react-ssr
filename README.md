@@ -1,6 +1,6 @@
 # loadable-module-federation-react-ssr
 
-This project was created to demonstrate the incompatibility with the `loadable-components` library and the `react` + SSR + Module Federation.
+This project was created to demonstrate the incompatibility with the `loadable-components` library and the react + SSR + Module Federation.
 
 It cointains two sample projects:
 
@@ -18,9 +18,23 @@ This project uses `react` version `16.x.x` and `loadable-components` version `5.
 
 Looking at the `app1` project, you can see that the `loadable-components` library is used to consume a component from the app2 using the dynamic import, but it can only works using the workaround snippet that enforces the preloading of the component.
 
+```js
+// samples/loadable-react-16/app1/src/client/components/App.tsx
+
+const LoadableContent = loadable(() => import('app2/Content'), {
+  fallback: <div>loading content...</div>,
+});
+
+if (typeof window === 'undefined') {
+  require('app2/Content');
+}
+```
+
 There are more workarounds being used to make SSR work, for example in the `samples/loadable-react-16/app1/src/server/renderAndExtractContext.tsx` file, we have to embrace the `App` component with the `ChunkExtractorManager` context provider component to make sure that our instance of the `ChunkExtractor` is being passed to the `InnerLoadable` component.
 
 Another workaround is the forced preloading of the module federated components using script tags, which is being done in the `samples/loadable-react-16/app1/src/server/renderAndExtractContext.tsx` that capture all loadable chunks that are being imported from remotes and injects them as script tags in the HTML using functions from `samples/loadable-react-16/app1/src/server/mfFunctions.ts` file.
+
+The parts which contains the workarounds are marked with the `// ================ WORKAROUND ================` comment.
 
 ### How to run
 
