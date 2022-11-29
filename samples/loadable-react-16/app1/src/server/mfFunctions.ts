@@ -17,11 +17,7 @@ export const getLoadableRequiredComponents = extractor => {
     .getScriptElements()
     .find(el => el.key === '__LOADABLE_REQUIRED_CHUNKS___ext');
 
-  // console.log('loadableElement', loadableElement);
-
   const { namedChunks } = JSON.parse(loadableElement.props.dangerouslySetInnerHTML.__html);
-
-  // console.log('namedChunks', namedChunks);
 
   return namedChunks;
 };
@@ -40,20 +36,14 @@ const getMFStats = async () => {
 
 export const getMfChunks = async extractor => {
   const loadableRequiredComponents = getLoadableRequiredComponents(extractor);
-  // console.log('loadableRequiredComponents', loadableRequiredComponents);
 
   const mfRenderedComponents = getMfRenderedComponents(loadableRequiredComponents);
 
   const mfChunks = await getMFStats();
 
-  console.log('mfChunks', mfChunks);
-
   const scriptsArr = [];
   const stylesArr = [];
   mfRenderedComponents.forEach(([appName, component]) => {
-    console.log('appName', appName);
-    console.log('component', component);
-
     const remoteStats = mfChunks.find(remote => remote.name === appName);
     remoteStats.exposes[component].forEach(chunk => {
       const url = 'http://localhost:3001/static/' + chunk;
@@ -61,8 +51,6 @@ export const getMfChunks = async extractor => {
       url.endsWith('.css') ? stylesArr.push(url) : scriptsArr.push(url);
     });
   });
-
-  // console.log('getMfChunks', scriptsArr, stylesArr);
 
   return [scriptsArr, stylesArr];
 };
