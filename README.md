@@ -1,4 +1,4 @@
-# loadable-module-federation-old-react-versions
+# loadable-module-federation-react-ssr
 
 This project was created to demonstrate the incompatibility with the `loadable-components` library and the `react` + SSR + Module Federation.
 
