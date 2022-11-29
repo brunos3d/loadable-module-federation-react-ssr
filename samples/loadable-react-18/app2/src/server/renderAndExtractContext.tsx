@@ -1,9 +1,9 @@
 import React from 'react';
 // import { Request } from 'express';
-import { ChunkExtractor } from '@loadable/server';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
+import { renderToString } from 'react-dom/server';
 
-import App from '../client/components/App';
+// import App from '../client/components/App';
 
 export type RenderAndExtractContextOptions = {
   // req: Request;
@@ -25,7 +25,19 @@ export async function renderAndExtractContext({
   // @loadable chunk extractor
   chunkExtractor,
 }: RenderAndExtractContextOptions) {
-  const markup = await renderToStaticMarkup(chunkExtractor.collectChunks(<App />));
+  const { default: App } = await import('../client/components/App');
+
+  // ================ WORKAROUND ================
+  // This not work, The ChunkExtractorManager context provider
+  // do not pass the chunkExtractor to the context consumer (ChunkExtractorManager)
+  // const markup = await renderToString(chunkExtractor.collectChunks(<App />));
+
+  const markup = renderToString(
+    <ChunkExtractorManager {...{ extractor: chunkExtractor }}>
+      <App />,
+    </ChunkExtractorManager>,
+  );
+  // ================ WORKAROUND ================
 
   const linkTags = chunkExtractor.getLinkTags();
   const scriptTags = chunkExtractor.getScriptTags();

@@ -7,6 +7,7 @@ const LoadableButton = loadable(() => import('./Button'), {
   fallback: <div>loading button...</div>,
 });
 
+// ================ WORKAROUND ================
 const LoadableContent = loadable(() => import('app2/Content'), {
   fallback: <div>loading content...</div>,
 });
@@ -15,6 +16,7 @@ const LoadableContent = loadable(() => import('app2/Content'), {
 if (typeof window === 'undefined') {
   require('app2/Content');
 }
+// ================ WORKAROUND ================
 
 const App = () => {
   const [state, setState] = React.useState<string>('');

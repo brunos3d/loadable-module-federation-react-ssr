@@ -28,6 +28,7 @@ export async function renderAndExtractContext({
 }: RenderAndExtractContextOptions) {
   const { default: App } = await import('../client/components/App');
 
+  // ================ WORKAROUND ================
   // This not work, The ChunkExtractorManager context provider
   // do not pass the chunkExtractor to the context consumer (ChunkExtractorManager)
   // const markup = await renderToString(chunkExtractor.collectChunks(<App />));
@@ -37,6 +38,7 @@ export async function renderAndExtractContext({
       <App />,
     </ChunkExtractorManager>,
   );
+  // ================ WORKAROUND ================
 
   const linkTags = chunkExtractor.getLinkTags();
   const scriptTags = chunkExtractor.getScriptTags();
