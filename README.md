@@ -16,6 +16,23 @@ This project uses `react` version `16.x.x` and `loadable-components` version `5.
 - app1: a React SSR app that uses `loadable-components` to load a federated component from `app2`
 - app2: a React SSR app that exposes a component with Module Federation
 
+### How to run
+
+To run the project, you need to run the following commands:
+
+```bash
+cd samples/loadable-react-16
+yarn install
+yarn start
+```
+
+The apps will be available at the following URLs:
+
+- app1: http://localhost:3000
+- app2: http://localhost:3001
+
+## Workarounds and hack's
+
 Looking at the `app1` project, you can see that the `loadable-components` library is used to consume a component from the app2 using the dynamic import, but it can only works using the workaround snippet that enforces the preloading of the component.
 
 ```js
@@ -35,21 +52,6 @@ There are more workarounds being used to make SSR work, for example in the `samp
 Another workaround is the forced preloading of the module federated components using script tags, which is being done in the `samples/loadable-react-16/app1/src/server/renderAndExtractContext.tsx` that capture all loadable chunks that are being imported from remotes and injects them as script tags in the HTML using functions from `samples/loadable-react-16/app1/src/server/mfFunctions.ts` file.
 
 The parts which contains the workarounds are marked with the `// ================ WORKAROUND ================` comment.
-
-### How to run
-
-To run the project, you need to run the following commands:
-
-```bash
-cd samples/loadable-react-16
-yarn install
-yarn start
-```
-
-The apps will be available at the following URLs:
-
-- app1: http://localhost:3000
-- app2: http://localhost:3001
 
 ## loadable-react-18
 
