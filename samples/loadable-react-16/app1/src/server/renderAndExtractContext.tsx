@@ -43,10 +43,12 @@ export async function renderAndExtractContext({
   const linkTags = chunkExtractor.getLinkTags();
   const scriptTags = chunkExtractor.getScriptTags();
 
+  // ================ WORKAROUND ================
   const [mfRequiredScripts, mfRequiredStyles] = await getMfChunks(chunkExtractor);
 
   const mfScriptTags = mfRequiredScripts.map(createScriptTag).join('');
   const mfStyleTags = mfRequiredStyles.map(createStyleTag).join('');
+  // ================ WORKAROUND ================
 
   console.log('mfScriptTags', mfScriptTags);
   console.log('mfStyleTags', mfStyleTags);

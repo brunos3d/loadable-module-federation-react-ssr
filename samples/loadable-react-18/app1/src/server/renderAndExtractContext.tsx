@@ -3,6 +3,8 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 
+import { getMfChunks, createScriptTag, createStyleTag } from './mfFunctions';
+
 // import App from '../client/components/App';
 
 export type RenderAndExtractContextOptions = {
@@ -40,9 +42,21 @@ export async function renderAndExtractContext({
   const linkTags = chunkExtractor.getLinkTags();
   const scriptTags = chunkExtractor.getScriptTags();
 
+  // ================ WORKAROUND ================
+  const [mfRequiredScripts, mfRequiredStyles] = await getMfChunks(chunkExtractor);
+
+  const mfScriptTags = mfRequiredScripts.map(createScriptTag).join('');
+  const mfStyleTags = mfRequiredStyles.map(createStyleTag).join('');
+  // ================ WORKAROUND ================
+
+  console.log('mfScriptTags', mfScriptTags);
+  console.log('mfStyleTags', mfStyleTags);
+
   return {
     markup,
-    linkTags,
-    scriptTags,
+    linkTags: `${mfStyleTags}${linkTags}`,
+    scriptTags: `${mfScriptTags}${scriptTags}`,
+    // linkTags: linkTags,
+    // scriptTags: scriptTags,
   };
 }
