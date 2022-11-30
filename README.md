@@ -2,6 +2,8 @@
 
 This project was created to demonstrate the incompatibility with the `loadable-components` library and the react + SSR + Module Federation.
 
+🐛 Check out the [issue](https://github.com/gregberge/loadable-components/issues/926) for more details.
+
 It cointains two sample projects:
 
 - loadable-react-16
