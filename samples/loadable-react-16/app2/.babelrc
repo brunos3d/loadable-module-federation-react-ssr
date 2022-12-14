@@ -1,4 +1,7 @@
 {
-  "plugins": ["@babel/plugin-proposal-class-properties", "@loadable/babel-plugin"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["@loadable/babel-plugin", { "moduleFederation": true }]
+  ],
   "presets": ["@babel/preset-react", "@babel/preset-typescript"]
 }

@@ -1,22 +1,13 @@
 import React from 'react';
 import loadable from '@loadable/component';
 
-import Button from './Button';
-
 const LoadableButton = loadable(() => import('./Button'), {
   fallback: <div>loading button...</div>,
 });
 
-// ================ WORKAROUND ================
 const LoadableContent = loadable(() => import('app2/Content'), {
   fallback: <div>loading content...</div>,
 });
-
-// workaround: to preload the module from the remote
-if (typeof window === 'undefined') {
-  require('app2/Content');
-}
-// ================ WORKAROUND ================
 
 const App = () => {
   const [state, setState] = React.useState<string>('');
@@ -48,8 +39,6 @@ const App = () => {
       </div>
 
       <div style={{ padding: '1rem' }}>
-        <Button label="Regular Button" />
-
         <LoadableButton label="Loadable Button" />
       </div>
 
