@@ -4,27 +4,9 @@ import loadable from '@loadable/component';
 
 import Content from './Content';
 
-// const LoadableContent = loadable(
-//   {
-//     requireAsync: props => {
-//       console.log('requireAsync requireAsync requireAsync', props);
-//       return import('./Content');
-//     },
-//     chunkName: props => {
-//       console.log('chunkName chunkName chunkName chunkName', props);
-//       return 'Content';
-//     },
-//   },
-//   {
-//     fallback: <div>loading content...</div>,
-//   },
-// );
-
 const LoadableContent = loadable(() => import('./Content'), {
   fallback: <div>loading content...</div>,
 });
-
-// LoadableContent.load().then(data => console.log('local Content loaded!', data));
 
 const App = () => {
   const [state, setState] = React.useState<string>('');
